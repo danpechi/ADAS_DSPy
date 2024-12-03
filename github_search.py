@@ -101,8 +101,7 @@ def main():
     query = "dspy.Module language:python"
     search_output_file = "script_archive/dspy_code_snippets.json"
     
-    save_query_results_to_json(HEADERS, query, search_output_file)  
-
+    save_query_results_to_json(HEADERS, query, search_output_file)
 
 if __name__ == "__main__":
     main()

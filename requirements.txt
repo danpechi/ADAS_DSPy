@@ -1,3 +1,5 @@
 streamlit
 openai
 requests
+nbformat
+pandas
