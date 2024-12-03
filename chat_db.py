@@ -12,7 +12,7 @@ client = OpenAI(
 )
 
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "batch-test-llama-8b"
+    st.session_state["openai_model"] = "ADAS_endpoint"
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
