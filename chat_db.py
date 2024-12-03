@@ -39,17 +39,13 @@ if prompt := st.chat_input("What is up?"):
                 model=st.session_state["openai_model"],
                 max_tokens=256
             )
-            # print(response)
-            # print(type(response))
+
             # Extract the prediction from the response
-            # if "new_module" in response:
             assistant_message = response.new_module
-            # else:
-            #     assistant_message = "Unexpected response format."
+
 
             # Append the assistant's message to the session state
             st.write(assistant_message)
-            # st.session_state.messages.append({"role": "assistant", "content": assistant_message})
 
         except Exception as e:
             st.error(f"An error occurred: {e}")
