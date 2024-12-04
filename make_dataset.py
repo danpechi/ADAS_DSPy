@@ -10,10 +10,8 @@ from tqdm import tqdm
 def download_github_file(url, headers):
     '''
     Function to download a file from GitHub.
-
     Args:
         url (str): The URL of the file to be downloaded.
-    
     Returns:
         dict: The JSON response from the GitHub API containing the file content.
     '''
@@ -38,18 +36,12 @@ def extract_decoded_content(response_json):
     
     Args:
         response_json (dict): The JSON response from the GitHub API containing the file content.
-
     Returns:
         str: The decoded content of the file.
-
     '''
     encoded_content = response_json.get('content')
-    
-    
     if not encoded_content:
         raise ValueError("The response does not contain 'content'")
-    
-    
     decoded_content = base64.b64decode(encoded_content).decode('utf-8')
     return decoded_content
 
@@ -64,10 +56,8 @@ def find_dspy_modules(code_text):
     '''
     # regex pattern to match classes inheriting from dspy.Modules
     pattern = r'class\s+\w+\s*\(\s*dspy\.Module\s*\):[\s\S]*?(?=\n\s*class\s|\Z)'
-    
     # Find all matches using the regex
     matches = re.findall(pattern, code_text)
-    
     return matches
 
 def extract_dspy_modules(input_file, output_file, headers):
