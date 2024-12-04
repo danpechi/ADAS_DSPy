@@ -6,35 +6,39 @@ We create an LLM-agent creator powered by another agent, that can generate code 
 
 ## Usage
 
-### Data Generation
+### Installation
+Clone the repository:
+```bash
+git clone https://github.com/danpechi/ADAS_DSPy.git
+```
 
-To generate the data, run the following three scripts in sequence:
-
-1. **Github Search**: This script searches GitHub for code containing dspy.Module definitions.
-   ```bash
-   python github_search.py
-
-2. **Extract dspy modules**: This script extracts the dspy.Module definitions from the search results.
-   ```bash
-   python make_dataset.py
-
-3. **Github Serach**: This script saves the extracted dspy.Module definitions to a CSV file, along with some metadata. 
-   ```bash
-   python make_df.py
+To install the required packages, run the following command:
+```bash
+pip install -r requirements.txt
+```
 
 ### Environment Setup
-
 
 1. **GitHub API**: 
    Create a file called `.secrets` in the root directory of the project. 
    Generate a GitHub API token, and then add the following line to the file:
    ```
    "GITHUB_API_TOKEN": "<YOUR_API_TOKEN>"
+   ```
 2. **DataBricks Token**:
    Create a folder called `.streamlit`, and create a file called `secrets.toml` inside it.
    Add the following lines to the file:
    ```
    DB_TOKEN = "<YOUR_DB_TOKEN>"
+   ```
+### Data Generation
+
+To generate the data, run the following command:
+
+   ```bash
+   python make_archive.py
+   ```
+   This script searches GitHub for code containing dspy.Module definitions, extracts the dspy.Module definitions from the search results and saves the extracted dspy.Module definitions to a CSV file, along with some metadata. 
 
 ### Deploy Agent Creator
 
@@ -47,3 +51,7 @@ To open the chat interface, run the following command:
 streamlit run chat-db.py
 ```
 You can now ask the chat interface to give you the code for an agent that you want!
+
+
+
+Inspired by https://arxiv.org/abs/2408.08435

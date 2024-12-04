@@ -1,8 +1,6 @@
+import re
 from openai import OpenAI
 import streamlit as st
-import requests
-import json
-import re
 from to_notebook import make_notebook
 
 st.title("ChatGPT-like clone")
@@ -50,18 +48,20 @@ if prompt := st.chat_input("What is up?"):
 
             # Create the notebook with the code
             class_def_pattern = r'class\s+\w+\s?\(.*\)\s*:\s*(.*?)(?=\n\s*class\s|\Z)'
-            class_def_match = re.search(class_def_pattern, assistant_message, re.DOTALL)
+            class_def_match = re.search(
+                class_def_pattern, assistant_message, re.DOTALL)
             class_def = class_def_match.group(0).strip()
             class_def = re.sub(r'`', '', class_def)
             # Search for the first class definition
             match = re.search(class_def_pattern, assistant_message, re.DOTALL)
-            
+
             class_name_pattern = r'class\s+(\w+)\s*(?:\(|:)'
-            class_name_match = re.search(class_name_pattern, assistant_message)    
+            class_name_match = re.search(class_name_pattern, assistant_message)
             class_name = class_name_match.group(1)
             make_notebook(user_message, class_def, class_name)
 
         except Exception as e:
             st.error(f"An error occurred: {e}")
-    
-    st.session_state.messages.append({"role": "assistant", "content": assistant_message})
+
+    st.session_state.messages.append(
+        {"role": "assistant", "content": assistant_message})

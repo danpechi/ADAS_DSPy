@@ -118,12 +118,13 @@ response = requests.put(
 print(json.dumps(response.json(), indent=4))
 """
 
+
 def make_notebook(user_message, class_def, class_name):
-    save_dir = "."
+    save_dir = "outputs"
     notebook_name = f"{class_name}_notebook.ipynb"
     os.makedirs(save_dir, exist_ok=True)
     full_path = os.path.join(save_dir, notebook_name)
-    
+
     nb = nbf.v4.new_notebook()
 
     nb['cells'].append(nbf.v4.new_code_cell(install_commands))
@@ -140,7 +141,6 @@ def make_notebook(user_message, class_def, class_name):
     nb['cells'].append(nbf.v4.new_code_cell(ml_flow_string))
     nb['cells'].append(nbf.v4.new_code_cell(endpoint_config_setup))
     nb['cells'].append(nbf.v4.new_code_cell(deploy_to_endpoint))
-    
 
     with open(full_path, 'w') as f:
         nbf.write(nb, f)
