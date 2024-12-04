@@ -2,7 +2,7 @@
 
 **Abhinav Krishnan**, **Dan Pechi**
 
-We create an LLM-agent creator powered by another agent, that can generate code for you based on your requirements. The agent-creator is powered by a large language model (LLM) that is performing retrieval on a dataset of dspy.Module definitions. The agent-creator comes with a front-end chat interface that allows you to ask for code snippets, and will generate the code for you. The dataset was created by scraping GitHub for code containing dspy.Module definitions.
+We create an LLM-agent creator powered by another agent, that can generate code based on your requirements. The agent-creator is powered by a large language model (LLM) that is performing retrieval on a dataset of dspy.Module definitions. The agent-creator comes with a front-end chat interface that allows you to ask for code snippets, and will generate the code for you. The dataset was created by scraping GitHub for code containing dspy.Module definitions.
 
 ## Usage
 
