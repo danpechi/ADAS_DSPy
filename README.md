@@ -27,7 +27,7 @@ pip install -r requirements.txt
    ```
 2. **DataBricks Token**:
    Create a folder called `.streamlit`, and create a file called `secrets.toml` inside it.
-   Add the following lines to the file:
+   Add the following line to the file:
    ```
    DB_TOKEN = "<YOUR_DB_TOKEN>"
    ```
