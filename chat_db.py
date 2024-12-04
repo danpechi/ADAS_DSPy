@@ -31,8 +31,8 @@ if prompt := st.chat_input("What is up?"):
     with st.chat_message("assistant"):
         try:
             # Combine the chat history into a single input string
-            user_message = st.session_state.messages[-1]["content"] if st.session_state.messages else ""        
-            
+            user_message = st.session_state.messages[-1]["content"] if st.session_state.messages else ""
+
             # Send request to the Databricks model endpoint
             response = client.chat.completions.create(
                 messages=[
