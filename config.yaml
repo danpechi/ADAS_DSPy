@@ -1,0 +1,19 @@
+user:
+  path: "dan.pechi@databricks.com"
+
+database:
+  catalog_name: "batch"
+  schema_name: "dpechi"
+  source_table_name: "dspy_modules_new"
+
+vector_search:
+  endpoint_name: "dspy-vector-search-endpoint"
+  index: "dspy_modules_index"
+
+models:
+  embedding_model_endpoint: "databricks-bge-large-en"
+  llm: "databricks/databricks-mixtral-8x7b-instruct"
+
+registered:
+  model_name: "ADAS_agent"
+  endpoint_name: "ADAS_endpoint"
