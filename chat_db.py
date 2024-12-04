@@ -2,6 +2,8 @@ from openai import OpenAI
 import streamlit as st
 import requests
 import json
+import re
+from to_notebook import make_notebook
 
 st.title("ChatGPT-like clone")
 
@@ -30,7 +32,7 @@ if prompt := st.chat_input("What is up?"):
         try:
             # Combine the chat history into a single input string
             user_message = st.session_state.messages[-1]["content"] if st.session_state.messages else ""
-            
+
             # Send request to the Databricks model endpoint
             response = client.chat.completions.create(
                 messages=[
@@ -43,9 +45,21 @@ if prompt := st.chat_input("What is up?"):
             # Extract the prediction from the response
             assistant_message = response.new_module
 
-
             # Append the assistant's message to the session state
             st.write(assistant_message)
+
+            # Create the notebook with the code
+            class_def_pattern = r'class\s+\w+\s?\(.*\)\s*:\s*(.*?)(?=\n\s*class\s|\Z)'
+            class_def_match = re.search(class_def_pattern, assistant_message, re.DOTALL)
+            class_def = class_def_match.group(0).strip()
+            class_def = re.sub(r'`', '', class_def)
+            # Search for the first class definition
+            match = re.search(class_def_pattern, assistant_message, re.DOTALL)
+            
+            class_name_pattern = r'class\s+(\w+)\s*(?:\(|:)'
+            class_name_match = re.search(class_name_pattern, assistant_message)    
+            class_name = class_name_match.group(1)
+            make_notebook(user_message, class_def, class_name)
 
         except Exception as e:
             st.error(f"An error occurred: {e}")
